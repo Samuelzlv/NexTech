@@ -15,27 +15,49 @@ const PRECOS = {
 const CATALOGO = {
     apple: {
         padrao: "iphoneB",
-        linhas: [{
-            nome: "iPhone", prefixo: "iPhone ",
-            grupos: [
-                ["iphoneA", "XR|XS|XS Max|11|SE (2ª geração)|SE (3ª geração)"],
-                ["iphoneB", "11 Pro|11 Pro Max|12|12 mini|12 Pro|12 Pro Max|13 mini|13|14|14 Plus"],
-                ["iphoneC", "13 Pro|13 Pro Max|14 Pro|14 Pro Max|15|15 Plus|15 Pro|15 Pro Max|16e|17e"],
-                ["iphoneD", "16|16 Plus|16 Pro|16 Pro Max|17|17 Air|17 Pro|17 Pro Max|18|18 Pro|18 Pro Max"]
-            ]
-        }]
+        linhas: [
+            {
+                nome: "iPhone", prefixo: "iPhone ",
+                grupos: [
+                    ["iphoneA", "XR|XS|XS Max|11|SE (2ª geração)|SE (3ª geração)"],
+                    ["iphoneB", "11 Pro|11 Pro Max|12|12 mini|12 Pro|12 Pro Max|13 mini|13|14|14 Plus"],
+                    ["iphoneC", "13 Pro|13 Pro Max|14 Pro|14 Pro Max|15|15 Plus|15 Pro|15 Pro Max|16e|17e"],
+                    ["iphoneD", "16|16 Plus|16 Pro|16 Pro Max|17|17 Air|17 Pro|17 Pro Max|18|18 Pro|18 Pro Max"]
+                ]
+            }
+        ]
     },
     samsung: {
         padrao: "inter",
-        linhas: [{
-            nome: "Galaxy", prefixo: "Samsung Galaxy ",
-            grupos: [
-                ["entrada", "A01|A01 Core|A02|A02s|A03|A03 Core|A03s|A04|A04e|A04s|A05|A05s|A06|A07|A10|A10s|A11|A12|A13|A13 5G|A14|A14 5G|A15|A15 5G|A16|A16 5G|A17|A20|A20s|M06|M10|M11|M12|M13|M14 5G|M15 5G|M16"],
-                ["inter", "A21|A21s|A22|A22 5G|A23|A23 5G|A24|A25 5G|A26|A26 5G|A30|A30s|A31|A32|A32 5G|A33 5G|A34 5G|A35 5G|A36|A36 5G|A37|A41|A50|A51|A52|A52 5G|A52s|A53 5G|A54 5G|A55 5G|A56 5G|A57|M20|M21|M22|M23 5G|M30|M30s|M31|M31s|M32|M33 5G|M34 5G|M35 5G|M36|M51|M52 5G|M53 5G|M54 5G|M55 5G|M56|M62"],
-                ["top", "A70|A70s|A71|A72|A73 5G|A80|S10|S10e|S10+|S10 Lite|Note 10|Note 10+|S20|S20+|S20 Ultra|S20 FE|Note 20|Note 20 Ultra|S21|S21+|S21 Ultra|S21 FE|S22|S22+|S22 Ultra|S23|S23+|S23 Ultra|S23 FE|S24|S24+|S24 Ultra|S24 FE|S25|S25+|S25 Ultra|S25 Edge|S25 FE|S26|S26+|S26 Ultra"],
-                ["dobravel", "Z Flip|Z Fold2|Z Flip3|Z Fold3|Z Flip4|Z Fold4|Z Flip5|Z Fold5|Z Flip6|Z Fold6|Z Flip7|Z Flip7 FE|Z Fold7|Z Flip8|Z Fold8"]
-            ]
-        }]
+        linhas: [
+            {
+                nome: "Galaxy A", prefixo: "Samsung Galaxy ",
+                grupos: [
+                    ["entrada", "A01|A01 Core|A02|A02s|A03|A03 Core|A03s|A04|A04e|A04s|A05|A05s|A06|A07|A10|A10s|A11|A12|A13|A13 5G|A14|A14 5G|A15|A15 5G|A16|A16 5G|A17|A20|A20s"],
+                    ["inter", "A21|A21s|A22|A22 5G|A23|A23 5G|A24|A25 5G|A26|A26 5G|A30|A30s|A31|A32|A32 5G|A33 5G|A34 5G|A35 5G|A36|A36 5G|A37|A41|A50|A51|A52|A52 5G|A52s|A53 5G|A54 5G|A55 5G|A56 5G|A57"],
+                    ["top", "A70|A70s|A71|A72|A73 5G|A80"]
+                ]
+            },
+            {
+                nome: "Galaxy M", prefixo: "Samsung Galaxy ",
+                grupos: [
+                    ["entrada", "M06|M10|M11|M12|M13|M14 5G|M15 5G|M16"],
+                    ["inter", "M20|M21|M22|M23 5G|M30|M30s|M31|M31s|M32|M33 5G|M34 5G|M35 5G|M36|M51|M52 5G|M53 5G|M54 5G|M55 5G|M56|M62"]
+                ]
+            },
+            {
+                nome: "Galaxy S e Note", prefixo: "Samsung Galaxy ",
+                grupos: [
+                    ["top", "S10|S10e|S10+|S10 Lite|Note 10|Note 10+|S20|S20+|S20 Ultra|S20 FE|Note 20|Note 20 Ultra|S21|S21+|S21 Ultra|S21 FE|S22|S22+|S22 Ultra|S23|S23+|S23 Ultra|S23 FE|S24|S24+|S24 Ultra|S24 FE|S25|S25+|S25 Ultra|S25 Edge|S25 FE|S26|S26+|S26 Ultra"]
+                ]
+            },
+            {
+                nome: "Galaxy Z (dobráveis)", prefixo: "Samsung Galaxy ",
+                grupos: [
+                    ["dobravel", "Z Flip|Z Fold2|Z Flip3|Z Fold3|Z Flip4|Z Fold4|Z Flip5|Z Fold5|Z Flip6|Z Fold6|Z Flip7|Z Flip7 FE|Z Fold7|Z Flip8|Z Fold8"]
+                ]
+            }
+        ]
     },
     xiaomi: {
         padrao: "inter",
@@ -66,26 +88,81 @@ const CATALOGO = {
     },
     motorola: {
         padrao: "inter",
-        linhas: [{
-            nome: "Motorola", prefixo: "Motorola ",
-            grupos: [
-                ["entrada", "Moto E6|Moto E6 Plus|Moto E6i|Moto E7|Moto E7 Plus|Moto E7i Power|Moto E13|Moto E14|Moto E15|Moto E20|Moto E22|Moto E22i|Moto E30|Moto E32|Moto E32s|Moto G04|Moto G04s|Moto G05|Moto G06|Moto G7 Play|Moto G8 Play|Moto G8 Power Lite|Moto G9 Play|Moto G10|Moto G13|Moto G14|Moto G15|Moto G17|Moto G20|Moto G22"],
-                ["inter", "Moto G7|Moto G7 Plus|Moto G7 Power|Moto G8|Moto G8 Plus|Moto G8 Power|Moto G9 Plus|Moto G9 Power|Moto G 5G|Moto G 5G Plus|Moto G23|Moto G24|Moto G24 Power|Moto G30|Moto G31|Moto G32|Moto G34|Moto G35|Moto G37|Moto G40 Fusion|Moto G41|Moto G42|Moto G45|Moto G47|Moto G50|Moto G52|Moto G53|Moto G54|Moto G55|Moto G56|Moto G60|Moto G62|Moto G67|Moto G71|Moto G72|Moto G73|Moto G75|Moto G77|Moto G82|Moto G84|Moto G85|Moto G86|Moto G87|Moto G Max|Moto One Vision|Moto One Action|Moto One Zoom|Moto One Macro|Edge 20 Lite|Edge 20 Fusion|Edge 30 Fusion|Edge 30 Neo|Edge 40 Neo|Edge 50 Fusion|Edge 50 Neo|Edge 60 Fusion|Edge 60 Neo|Edge 70 Fusion|Edge 70 Fusion+"],
-                ["top", "Moto Z4|Moto G100|Moto G200|Edge|Edge+|Edge 20|Edge 20 Pro|Edge 30|Edge 30 Pro|Edge 30 Ultra|Edge 40|Edge 40 Pro|Edge 50 Pro|Edge 50 Ultra|Edge 60|Edge 60 Pro|Edge 60 Stylus|Edge 70|Edge 70 Pro|Edge 70 Plus|ThinkPhone 25|Signature"],
-                ["dobravel", "Razr (2019)|Razr 5G|Razr 2022|Razr 40|Razr 40 Ultra|Razr 50|Razr 50 Ultra|Razr 60|Razr 60 Ultra|Razr 70|Razr 70 Ultra|Razr Fold"]
-            ]
-        }]
+        linhas: [
+            {
+                nome: "Moto E", prefixo: "Motorola ",
+                grupos: [
+                    ["entrada", "Moto E6|Moto E6 Plus|Moto E6i|Moto E7|Moto E7 Plus|Moto E7i Power|Moto E13|Moto E14|Moto E15|Moto E20|Moto E22|Moto E22i|Moto E30|Moto E32|Moto E32s"]
+                ]
+            },
+            {
+                nome: "Moto G", prefixo: "Motorola ",
+                grupos: [
+                    ["entrada", "Moto G04|Moto G04s|Moto G05|Moto G06|Moto G7 Play|Moto G8 Play|Moto G8 Power Lite|Moto G9 Play|Moto G10|Moto G13|Moto G14|Moto G15|Moto G17|Moto G20|Moto G22"],
+                    ["inter", "Moto G7|Moto G7 Plus|Moto G7 Power|Moto G8|Moto G8 Plus|Moto G8 Power|Moto G9 Plus|Moto G9 Power|Moto G 5G|Moto G 5G Plus|Moto G23|Moto G24|Moto G24 Power|Moto G30|Moto G31|Moto G32|Moto G34|Moto G35|Moto G37|Moto G40 Fusion|Moto G41|Moto G42|Moto G45|Moto G47|Moto G50|Moto G52|Moto G53|Moto G54|Moto G55|Moto G56|Moto G60|Moto G62|Moto G67|Moto G71|Moto G72|Moto G73|Moto G75|Moto G77|Moto G82|Moto G84|Moto G85|Moto G86|Moto G87|Moto G Max"],
+                    ["top", "Moto G100|Moto G200"]
+                ]
+            },
+            {
+                nome: "Edge", prefixo: "Motorola ",
+                grupos: [
+                    ["inter", "Edge 20 Lite|Edge 20 Fusion|Edge 30 Fusion|Edge 30 Neo|Edge 40 Neo|Edge 50 Fusion|Edge 50 Neo|Edge 60 Fusion|Edge 60 Neo|Edge 70 Fusion|Edge 70 Fusion+"],
+                    ["top", "Edge|Edge+|Edge 20|Edge 20 Pro|Edge 30|Edge 30 Pro|Edge 30 Ultra|Edge 40|Edge 40 Pro|Edge 50 Pro|Edge 50 Ultra|Edge 60|Edge 60 Pro|Edge 60 Stylus|Edge 70|Edge 70 Pro|Edge 70 Plus"]
+                ]
+            },
+            {
+                nome: "Razr (dobráveis)", prefixo: "Motorola ",
+                grupos: [
+                    ["dobravel", "Razr (2019)|Razr 5G|Razr 2022|Razr 40|Razr 40 Ultra|Razr 50|Razr 50 Ultra|Razr 60|Razr 60 Ultra|Razr 70|Razr 70 Ultra|Razr Fold"]
+                ]
+            },
+            {
+                nome: "Outros (One, Z, ThinkPhone)", prefixo: "Motorola ",
+                grupos: [
+                    ["inter", "Moto One Vision|Moto One Action|Moto One Zoom|Moto One Macro"],
+                    ["top", "Moto Z4|ThinkPhone 25|Signature"]
+                ]
+            }
+        ]
     },
     realme: {
         padrao: "inter",
-        linhas: [{
-            nome: "Realme", prefixo: "Realme ",
-            grupos: [
-                ["entrada", "C3|C11|C11 (2021)|C12|C15|C17|C20|C21|C21Y|C25|C25s|C25Y|C30|C30s|C31|C33|C33 (2023)|C35|C51|C51s|C53|C55|C61|C63|C63 5G|C65|C65 5G|C67|C67 4G|C71|C73|C75|C75 5G|C75x|C83|C85|C85 4G|C100|C100i|C100x|Narzo 10A|Narzo 20A|Narzo 30A|Narzo 50A|Narzo 50i|Narzo 50A Prime|Narzo 50i Prime|Narzo N53|Narzo N55|Narzo N61|Narzo N63|Narzo N65|Narzo 80 Lite|Narzo 100 Lite|Note 50|Note 60|Note 70T|P4 Lite"],
-                ["inter", "6|6i|7|7i|7 5G|8|8 5G|8i|8s 5G|9|9 5G|9i|9i 5G|10|10 5G|10s|10T|11|11x|12|12 4G|12+|12x|13|13 4G|13+|14|14T|14x|14 Pro Lite|15|15T|15 Lite|16|16T|16x|X3|Narzo 10|Narzo 20|Narzo 20 Pro|Narzo 30|Narzo 30 Pro|Narzo 50|Narzo 50 5G|Narzo 50 Pro|Narzo 60|Narzo 60x|Narzo 60 Pro|Narzo 70|Narzo 70x|Narzo 70 Turbo|Narzo 70 Pro|Narzo 80x|Narzo 80 Pro|Narzo 100x|P4 Power|P4x"],
-                ["top", "6 Pro|7 Pro|8 Pro|9 Pro|9 Pro+|10 Pro|10 Pro+|11 Pro|11 Pro+|12 Pro|12 Pro+|13 Pro|13 Pro+|14 Pro|14 Pro+|15 Pro|16 Pro|16 Pro+|X3 SuperZoom|X50|X50 Pro|GT|GT Master|GT Master Explorer|GT Neo|GT Neo 2|GT Neo 2T|GT 2|GT 2 Pro|GT Neo 3|GT Neo 3T|GT 3|GT Neo 5|GT Neo 5 SE|GT 5|GT 5 Pro|GT Neo 6|GT Neo 6 SE|GT 6|GT 6T|GT 7|GT 7T|GT 7 Pro|GT 8|GT 8 Pro|Neo8"]
-            ]
-        }]
+        linhas: [
+            {
+                nome: "Números (6 a 16)", prefixo: "Realme ",
+                grupos: [
+                    ["inter", "6|6i|7|7i|7 5G|8|8 5G|8i|8s 5G|9|9 5G|9i|9i 5G|10|10 5G|10s|10T|11|11x|12|12 4G|12+|12x|13|13 4G|13+|14|14T|14x|14 Pro Lite|15|15T|15 Lite|16|16T|16x"],
+                    ["top", "6 Pro|7 Pro|8 Pro|9 Pro|9 Pro+|10 Pro|10 Pro+|11 Pro|11 Pro+|12 Pro|12 Pro+|13 Pro|13 Pro+|14 Pro|14 Pro+|15 Pro|16 Pro|16 Pro+"]
+                ]
+            },
+            {
+                nome: "Série C", prefixo: "Realme ",
+                grupos: [
+                    ["entrada", "C3|C11|C11 (2021)|C12|C15|C17|C20|C21|C21Y|C25|C25s|C25Y|C30|C30s|C31|C33|C33 (2023)|C35|C51|C51s|C53|C55|C61|C63|C63 5G|C65|C65 5G|C67|C67 4G|C71|C73|C75|C75 5G|C75x|C83|C85|C85 4G|C100|C100i|C100x"]
+                ]
+            },
+            {
+                nome: "GT, Neo e X", prefixo: "Realme ",
+                grupos: [
+                    ["inter", "X3"],
+                    ["top", "X3 SuperZoom|X50|X50 Pro|GT|GT Master|GT Master Explorer|GT Neo|GT Neo 2|GT Neo 2T|GT 2|GT 2 Pro|GT Neo 3|GT Neo 3T|GT 3|GT Neo 5|GT Neo 5 SE|GT 5|GT 5 Pro|GT Neo 6|GT Neo 6 SE|GT 6|GT 6T|GT 7|GT 7T|GT 7 Pro|GT 8|GT 8 Pro|Neo8"]
+                ]
+            },
+            {
+                nome: "Narzo", prefixo: "Realme ",
+                grupos: [
+                    ["entrada", "Narzo 10A|Narzo 20A|Narzo 30A|Narzo 50A|Narzo 50i|Narzo 50A Prime|Narzo 50i Prime|Narzo N53|Narzo N55|Narzo N61|Narzo N63|Narzo N65|Narzo 80 Lite|Narzo 100 Lite"],
+                    ["inter", "Narzo 10|Narzo 20|Narzo 20 Pro|Narzo 30|Narzo 30 Pro|Narzo 50|Narzo 50 5G|Narzo 50 Pro|Narzo 60|Narzo 60x|Narzo 60 Pro|Narzo 70|Narzo 70x|Narzo 70 Turbo|Narzo 70 Pro|Narzo 80x|Narzo 80 Pro|Narzo 100x"]
+                ]
+            },
+            {
+                nome: "Note e P", prefixo: "Realme ",
+                grupos: [
+                    ["entrada", "Note 50|Note 60|Note 70T|P4 Lite"],
+                    ["inter", "P4 Power|P4x"]
+                ]
+            }
+        ]
     }
 };
 
