@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistência Técnica de Celular</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <img src="logo-nextech.jpeg" alt="logo nextech" width="250">
+        <h1>Assistência Técnica Especializada</h1>
+        <p>Soluções rápidas e confiáveis para o seu smartphone com peças de alta qualidade.</p>
+    </header>
+
+    <section class="container">
+        <h2>Nossos Serviços</h2>
+        <p>Realizamos todos os tipos de assistência técnica para celular: troca de tela, troca de bateria, reparo de placa, conector de carga, câmeras e muito mais.</p>
+
+        <h3>Marcas Atendidas</h3>
+        <ul class="marcas-list">
+            <li>Apple</li>
+            <li>Samsung</li>
+            <li>Motorola</li>
+            <li>Xiaomi</li>
+            <li>Realme</li>
+        </ul>
+    </section>
+
+    <section class="container">
+        <h2>Quanto custa o reparo?</h2>
+
+        <div class="combo" id="combo-marca">
+            <input type="text" placeholder="Selecione ou digite a marca" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Marca">
+            <ul hidden></ul>
+        </div>
+
+        <!-- Aparece só quando a marca tem mais de uma linha (ex.: Xiaomi, Redmi, POCO) -->
+        <div class="combo" id="combo-linha" style="display:none">
+            <input type="text" placeholder="Selecione ou digite a linha" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Linha">
+            <ul hidden></ul>
+        </div>
+
+        <div class="combo" id="combo-modelo">
+            <input type="text" placeholder="Escolha primeiro a marca" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Modelo" disabled>
+            <ul hidden></ul>
+        </div>
+
+        <div class="combo" id="combo-defeito">
+            <input type="text" placeholder="Selecione ou digite o defeito" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Defeito">
+            <ul hidden></ul>
+        </div>
+
+        <button id="btnCalcular">Calcular Preço</button>
+
+        <div id="resultado"></div>
+    </section>
+
+    <section class="container">
+        <h2>Onde Estamos</h2>
+        <p><strong>Endereço:</strong> Rua dos Vales, nº 376</p>
+    </section>
+
+    <footer>
+        <h2>Solicite seu Orçamento</h2>
+        <p>Entre em contato agora mesmo e fale com nossos técnicos:</p>
+        <button id="btnWhatsapp">Ligar / WhatsApp: (94) 99273-2129</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
