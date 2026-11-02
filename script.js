@@ -1,5 +1,3 @@
-// ===== Valores estimados (R$) por categoria de aparelho =====
-// Para ajustar um preço, é só mudar o número abaixo.
 const PRECOS = {
     entrada:  { tela: 160,  bateria: 90,  placa: 180, conector: 90,  camera: 120 },
     inter:    { tela: 280,  bateria: 130, placa: 260, conector: 120, camera: 180 },
@@ -11,7 +9,7 @@ const PRECOS = {
     iphoneD:  { tela: 1300, bateria: 420, placa: 900, conector: 400, camera: 650 }
 };
 
-// ===== Catálogo: cada linha tem grupos [categoria de preço, "modelo|modelo|..."] =====
+// Catálogo: cada linha tem grupos //
 const CATALOGO = {
     apple: {
         padrao: "iphoneB",
@@ -183,7 +181,7 @@ function normalizar(texto) {
     return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-// Campo com lista própria: clica e vê todas as opções, ou digita para filtrar
+// Campo com lista própria: clica e vê todas as opções, ou digita para filtrar //
 function criarCombo(raiz, aoEscolher) {
     const input = raiz.querySelector("input");
     const lista = raiz.querySelector("ul");
@@ -193,7 +191,7 @@ function criarCombo(raiz, aoEscolher) {
     let ativo = -1;
 
     function filtrar() {
-        // Se o texto é a opção já escolhida, mostra todas para poder trocar
+        // Se o texto é a opção já escolhida, mostra todas para poder trocar //
         if (escolhida && input.value === escolhida.texto) return opcoes;
         const termos = normalizar(input.value).split(/\s+/).filter(Boolean);
         return opcoes.filter(function (o) {
@@ -272,7 +270,7 @@ function criarCombo(raiz, aoEscolher) {
         }
     });
 
-    // Ao sair do campo: aceita o texto se for igual a uma opção, senão volta ao que estava escolhido
+    // Ao sair do campo: aceita o texto se for igual a uma opção, senão volta ao que estava escolhido //
     input.addEventListener("blur", function () {
         const digitado = normalizar(input.value.trim());
         const exata = opcoes.find(function (o) { return normalizar(o.texto) === digitado; });
@@ -342,7 +340,7 @@ const comboMarca = criarCombo($("combo-marca"), function (marca) {
 
     const cat = CATALOGO[marca.valor];
     if (cat.linhas.length > 1) {
-        // Marca com várias linhas (Xiaomi): primeiro escolhe a linha
+        // Marca com várias linhas (Xiaomi): primeiro escolhe a linha //
         comboLinha.definirOpcoes(cat.linhas.map(function (l, i) {
             return { valor: String(i), texto: l.nome };
         }));
