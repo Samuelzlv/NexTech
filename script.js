@@ -110,3 +110,321 @@ const CATALOGO = {
             },
             {
                 nome: "Razr (dobráveis)", prefixo: "Motorola ",
+                grupos: [
+                    ["dobravel", "Razr (2019)|Razr 5G|Razr 2022|Razr 40|Razr 40 Ultra|Razr 50|Razr 50 Ultra|Razr 60|Razr 60 Ultra|Razr 70|Razr 70 Ultra|Razr Fold"]
+                ]
+            },
+            {
+                nome: "Outros (One, Z, ThinkPhone)", prefixo: "Motorola ",
+                grupos: [
+                    ["inter", "Moto One Vision|Moto One Action|Moto One Zoom|Moto One Macro"],
+                    ["top", "Moto Z4|ThinkPhone 25|Signature"]
+                ]
+            }
+        ]
+    },
+    realme: {
+        padrao: "inter",
+        linhas: [
+            {
+                nome: "Números (6 a 16)", prefixo: "Realme ",
+                grupos: [
+                    ["inter", "6|6i|7|7i|7 5G|8|8 5G|8i|8s 5G|9|9 5G|9i|9i 5G|10|10 5G|10s|10T|11|11x|12|12 4G|12+|12x|13|13 4G|13+|14|14T|14x|14 Pro Lite|15|15T|15 Lite|16|16T|16x"],
+                    ["top", "6 Pro|7 Pro|8 Pro|9 Pro|9 Pro+|10 Pro|10 Pro+|11 Pro|11 Pro+|12 Pro|12 Pro+|13 Pro|13 Pro+|14 Pro|14 Pro+|15 Pro|16 Pro|16 Pro+"]
+                ]
+            },
+            {
+                nome: "Série C", prefixo: "Realme ",
+                grupos: [
+                    ["entrada", "C3|C11|C11 (2021)|C12|C15|C17|C20|C21|C21Y|C25|C25s|C25Y|C30|C30s|C31|C33|C33 (2023)|C35|C51|C51s|C53|C55|C61|C63|C63 5G|C65|C65 5G|C67|C67 4G|C71|C73|C75|C75 5G|C75x|C83|C85|C85 4G|C100|C100i|C100x"]
+                ]
+            },
+            {
+                nome: "GT, Neo e X", prefixo: "Realme ",
+                grupos: [
+                    ["inter", "X3"],
+                    ["top", "X3 SuperZoom|X50|X50 Pro|GT|GT Master|GT Master Explorer|GT Neo|GT Neo 2|GT Neo 2T|GT 2|GT 2 Pro|GT Neo 3|GT Neo 3T|GT 3|GT Neo 5|GT Neo 5 SE|GT 5|GT 5 Pro|GT Neo 6|GT Neo 6 SE|GT 6|GT 6T|GT 7|GT 7T|GT 7 Pro|GT 8|GT 8 Pro|Neo8"]
+                ]
+            },
+            {
+                nome: "Narzo", prefixo: "Realme ",
+                grupos: [
+                    ["entrada", "Narzo 10A|Narzo 20A|Narzo 30A|Narzo 50A|Narzo 50i|Narzo 50A Prime|Narzo 50i Prime|Narzo N53|Narzo N55|Narzo N61|Narzo N63|Narzo N65|Narzo 80 Lite|Narzo 100 Lite"],
+                    ["inter", "Narzo 10|Narzo 20|Narzo 20 Pro|Narzo 30|Narzo 30 Pro|Narzo 50|Narzo 50 5G|Narzo 50 Pro|Narzo 60|Narzo 60x|Narzo 60 Pro|Narzo 70|Narzo 70x|Narzo 70 Turbo|Narzo 70 Pro|Narzo 80x|Narzo 80 Pro|Narzo 100x"]
+                ]
+            },
+            {
+                nome: "Note e P", prefixo: "Realme ",
+                grupos: [
+                    ["entrada", "Note 50|Note 60|Note 70T|P4 Lite"],
+                    ["inter", "P4 Power|P4x"]
+                ]
+            }
+        ]
+    }
+};
+
+const NOMES_MARCA = { apple: "Apple", samsung: "Samsung", motorola: "Motorola", xiaomi: "Xiaomi", realme: "Realme" };
+const NOMES_DEFEITO = {
+    tela: "Troca de Tela", bateria: "Troca de Bateria", placa: "Reparo de Placa",
+    conector: "Conector de Carga", camera: "Reparo de Câmera"
+};
+
+// Palavras extras que também encontram a opção (ex.: digitar "iphone" acha Apple)
+const SINONIMOS_MARCA = { apple: "iphone", samsung: "galaxy", motorola: "moto edge razr", xiaomi: "mi redmi poco", realme: "" };
+const SINONIMOS_DEFEITO = { tela: "display touch", bateria: "", placa: "", conector: "carga carregador carregamento", camera: "" };
+
+const $ = function (id) { return document.getElementById(id); };
+const resultado = $("resultado");
+
+function normalizar(texto) {
+    return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+// Campo com lista própria: clica e vê todas as opções, ou digita para filtrar //
+function criarCombo(raiz, aoEscolher) {
+    const input = raiz.querySelector("input");
+    const lista = raiz.querySelector("ul");
+    let opcoes = [];
+    let escolhida = null;
+    let visiveis = [];
+    let ativo = -1;
+
+    function filtrar() {
+        // Se o texto é a opção já escolhida, mostra todas para poder trocar //
+        if (escolhida && input.value === escolhida.texto) return opcoes;
+        const termos = normalizar(input.value).split(/\s+/).filter(Boolean);
+        return opcoes.filter(function (o) {
+            return termos.every(function (t) { return o.busca.indexOf(t) !== -1; });
+        });
+    }
+
+    function abrir() {
+        visiveis = filtrar();
+        ativo = -1;
+        lista.innerHTML = "";
+        if (visiveis.length === 0) {
+            const vazio = document.createElement("li");
+            vazio.className = "vazio";
+            vazio.textContent = "Nenhum resultado. Tente outro nome.";
+            lista.appendChild(vazio);
+        }
+        visiveis.forEach(function (o) {
+            const li = document.createElement("li");
+            li.textContent = o.texto;
+            if (o === escolhida) li.className = "selecionada";
+            li.addEventListener("mousedown", function (e) {
+                e.preventDefault();
+                escolher(o);
+            });
+            lista.appendChild(li);
+        });
+        lista.hidden = false;
+        input.setAttribute("aria-expanded", "true");
+        const sel = lista.querySelector(".selecionada");
+        if (sel) sel.scrollIntoView({ block: "nearest" });
+    }
+
+    function fechar() {
+        lista.hidden = true;
+        input.setAttribute("aria-expanded", "false");
+    }
+
+    function escolher(o) {
+        escolhida = o;
+        input.value = o.texto;
+        fechar();
+        aoEscolher(o);
+    }
+
+    function marcarAtivo() {
+        Array.prototype.forEach.call(lista.children, function (li, i) {
+            li.classList.toggle("ativo", i === ativo);
+        });
+        if (lista.children[ativo]) lista.children[ativo].scrollIntoView({ block: "nearest" });
+    }
+
+    input.addEventListener("focus", function () { input.select(); abrir(); });
+    input.addEventListener("click", function () { if (lista.hidden) abrir(); });
+    input.addEventListener("input", abrir);
+
+    input.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault();
+            if (lista.hidden) abrir();
+            if (visiveis.length) {
+                const passo = e.key === "ArrowDown" ? 1 : -1;
+                ativo = (ativo + passo + visiveis.length) % visiveis.length;
+                marcarAtivo();
+            }
+        } else if (e.key === "Enter") {
+            if (lista.hidden || visiveis.length === 0) return;
+            e.preventDefault();
+            if (ativo < 0 && escolhida && input.value === escolhida.texto) {
+                fechar();
+            } else {
+                escolher(visiveis[ativo >= 0 ? ativo : 0]);
+            }
+        } else if (e.key === "Escape") {
+            fechar();
+        }
+    });
+
+    // Ao sair do campo: aceita o texto se for igual a uma opção, senão volta ao que estava escolhido //
+    input.addEventListener("blur", function () {
+        const digitado = normalizar(input.value.trim());
+        const exata = opcoes.find(function (o) { return normalizar(o.texto) === digitado; });
+        if (exata && exata !== escolhida) {
+            escolher(exata);
+            return;
+        }
+        if (digitado === "") {
+            if (escolhida) {
+                escolhida = null;
+                aoEscolher(null);
+            }
+        } else if (escolhida) {
+            input.value = escolhida.texto;
+        } else {
+            input.value = "";
+        }
+        fechar();
+    });
+
+    return {
+        definirOpcoes: function (novas) {
+            opcoes = novas.map(function (o) {
+                return {
+                    valor: o.valor,
+                    texto: o.texto,
+                    generico: o.generico,
+                    busca: normalizar(o.texto + " " + (o.extra || ""))
+                };
+            });
+            escolhida = null;
+            input.value = "";
+        },
+        obter: function () { return escolhida; },
+        habilitar: function (sim, dica) {
+            input.disabled = !sim;
+            if (dica) input.placeholder = dica;
+            if (!sim) fechar();
+        }
+    };
+}
+
+function carregarModelos(marca, linha) {
+    const opcoes = [];
+    if (linha) {
+        linha.grupos.forEach(function (grupo) {
+            grupo[1].split("|").forEach(function (nome) {
+                opcoes.push({ valor: grupo[0], texto: linha.prefixo + nome });
+            });
+        });
+    }
+    opcoes.push({ valor: CATALOGO[marca].padrao, texto: "Outro modelo (estimativa)", extra: "outro nao listado", generico: true });
+    comboModelo.definirOpcoes(opcoes);
+    comboModelo.habilitar(true, "Selecione ou digite o modelo");
+}
+
+const comboMarca = criarCombo($("combo-marca"), function (marca) {
+    resultado.innerHTML = "";
+    $("combo-linha").style.display = "none";
+    comboLinha.definirOpcoes([]);
+    comboModelo.definirOpcoes([]);
+
+    if (!marca) {
+        comboModelo.habilitar(false, "Escolha primeiro a marca");
+        return;
+    }
+
+    const cat = CATALOGO[marca.valor];
+    if (cat.linhas.length > 1) {
+        // Marca com várias linhas (Xiaomi): primeiro escolhe a linha //
+        comboLinha.definirOpcoes(cat.linhas.map(function (l, i) {
+            return { valor: String(i), texto: l.nome };
+        }));
+        $("combo-linha").style.display = "";
+        comboModelo.habilitar(false, "Escolha primeiro a linha");
+    } else {
+        carregarModelos(marca.valor, cat.linhas[0]);
+    }
+});
+
+const comboLinha = criarCombo($("combo-linha"), function (linha) {
+    resultado.innerHTML = "";
+    comboModelo.definirOpcoes([]);
+    if (!linha) {
+        comboModelo.habilitar(false, "Escolha primeiro a linha");
+        return;
+    }
+    const marca = comboMarca.obter().valor;
+    carregarModelos(marca, CATALOGO[marca].linhas[Number(linha.valor)]);
+});
+
+const comboModelo = criarCombo($("combo-modelo"), function () { resultado.innerHTML = ""; });
+const comboDefeito = criarCombo($("combo-defeito"), function () { resultado.innerHTML = ""; });
+
+comboMarca.definirOpcoes(Object.keys(NOMES_MARCA).map(function (k) {
+    return { valor: k, texto: NOMES_MARCA[k], extra: SINONIMOS_MARCA[k] };
+}));
+comboDefeito.definirOpcoes(Object.keys(NOMES_DEFEITO).map(function (k) {
+    return { valor: k, texto: NOMES_DEFEITO[k], extra: SINONIMOS_DEFEITO[k] };
+}));
+comboModelo.habilitar(false, "Escolha primeiro a marca");
+
+$("btnCalcular").addEventListener("click", function () {
+    const marca = comboMarca.obter();
+    const modelo = comboModelo.obter();
+    const defeito = comboDefeito.obter();
+
+    if (!marca || !modelo || !defeito) {
+        resultado.textContent = "Selecione a marca, o modelo e o defeito para ver o preço.";
+        return;
+    }
+
+    const valor = PRECOS[modelo.valor][defeito.valor];
+    const nomeAparelho = modelo.generico ? "outro modelo " + marca.texto : modelo.texto;
+    const valorFormatado = valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+    resultado.innerHTML =
+        "<strong>" + defeito.texto + " - " + nomeAparelho + "</strong><br>" +
+        "Valor estimado: <strong>" + valorFormatado + "</strong><br>" +
+        "<small>Valor médio de referência. O preço final é confirmado após avaliação do aparelho.</small>";
+});
+
+$("btnWhatsapp").addEventListener("click", function () {
+    window.open("https://wa.me/5594992732129?text=Olá,%20gostaria%20de%20pedir%20um%20orçamento%20para%20conserto%20de%20celular.", "_blank");
+});
+
+// Instagram da NexTech: botão ao lado do WhatsApp, no rodapé //
+const URL_INSTAGRAM = "https://www.instagram.com/nextech_bes2026/";
+
+function adicionarInstagram() {
+    const rodape = document.querySelector("footer");
+    const btnWhatsapp = $("btnWhatsapp");
+    if (!rodape || !btnWhatsapp) return;
+
+    const link = document.createElement("a");
+    link.className = "btn-instagram";
+    link.href = URL_INSTAGRAM;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", "Instagram da NexTech");
+    link.innerHTML =
+        '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" ' +
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<rect x="3" y="3" width="18" height="18" rx="5"></rect>' +
+        '<circle cx="12" cy="12" r="4"></circle>' +
+        '<circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>' +
+        '</svg><span>@nextech_bes2026</span>';
+
+    // Agrupa os dois botões; o do WhatsApp só muda de lugar, o clique dele continua igual //
+    const grupo = document.createElement("div");
+    grupo.className = "footer-links";
+    btnWhatsapp.parentNode.insertBefore(grupo, btnWhatsapp);
+    grupo.appendChild(btnWhatsapp);
+    grupo.appendChild(link);
+}
+
+adicionarInstagram();
