@@ -16,3 +16,63 @@
     <header class="hero">
         <img src="logo-nextech.jpeg" alt="Logotipo da NexTech Assistência Técnica" width="460" height="201">
         <h1>Assistência Técnica Especializada</h1>
+        <p>Conserto de celulares com qualidade, rapidez e transparência.</p>
+    </header>
+
+    <section class="container">
+        <h2>Sobre a NexTech</h2>
+        <p>Somos uma assistência técnica focada em celulares, com reparos de <strong>tela, bateria, placa, conector de carga e câmera</strong>.</p>
+
+        <h3>Marcas atendidas</h3>
+        <ul class="marcas-list">
+            <li>Apple</li>
+            <li>Samsung</li>
+            <li>Motorola</li>
+            <li>Xiaomi</li>
+            <li>Realme</li>
+        </ul>
+    </section>
+
+    <section class="container">
+        <h2>Calcule o preço do reparo</h2>
+        <p>Escolha a marca, o modelo e o defeito para ver o valor médio estimado.</p>
+
+        <h3>Seu aparelho</h3>
+
+        <div class="combo" id="combo-marca">
+            <input type="text" placeholder="Selecione ou digite a marca" autocomplete="off"
+                   role="combobox" aria-label="Marca" aria-expanded="false">
+            <ul hidden></ul>
+        </div>
+
+        <div class="combo" id="combo-linha" style="display: none;">
+            <input type="text" placeholder="Selecione ou digite a linha" autocomplete="off"
+                   role="combobox" aria-label="Linha" aria-expanded="false">
+            <ul hidden></ul>
+        </div>
+
+        <div class="combo" id="combo-modelo">
+            <input type="text" placeholder="Escolha primeiro a marca" autocomplete="off"
+                   role="combobox" aria-label="Modelo" aria-expanded="false" disabled>
+            <ul hidden></ul>
+        </div>
+
+        <div class="combo" id="combo-defeito">
+            <input type="text" placeholder="Selecione ou digite o defeito" autocomplete="off"
+                   role="combobox" aria-label="Defeito" aria-expanded="false">
+            <ul hidden></ul>
+        </div>
+
+        <button type="button" id="btnCalcular">Calcular preço</button>
+
+        <div id="resultado" aria-live="polite"></div>
+    </section>
+
+    <footer>
+        <h2>Peça seu orçamento</h2>
+        <p>Fale com a gente pelo WhatsApp e tire suas dúvidas.</p>
+        <button type="button" id="btnWhatsapp">Chamar no WhatsApp</button>
+    </footer>
+
+</body>
+</html>
