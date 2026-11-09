@@ -1,12 +1,4 @@
-:root {
-    --preto: #000000;
-    --superficie: #0d0d0d;
-    --linha: #262626;
-    --verde: #80ff1a;
-    --verde-suave: rgba(128, 255, 26, 0.4);
-    --texto: #e6e6e6;
-    --texto-suave: #a6a6a6;
-}
+/* estilo do site da NexTech */
 
 * {
     box-sizing: border-box;
@@ -15,160 +7,121 @@
 }
 
 body {
-    font-family: 'Outfit', 'Segoe UI', Arial, sans-serif;
-    background: var(--preto);
-    color: var(--texto);
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: #e6e6e6;
     line-height: 1.6;
 }
 
-/* Topo  */
+/* topo do site */
 .hero {
     text-align: center;
-    padding: 3rem 1.25rem 1rem;
+    padding: 40px 20px;
+    border-bottom: 2px solid #80ff1a;
 }
 
-/* A logo tem muita margem preta: o recorte mostra só o logotipo */
 .hero img {
-    display: block;
-    width: min(460px, 92%);
+    width: 100%;
+    max-width: 400px;
     height: auto;
-    aspect-ratio: 16 / 7;
-    object-fit: cover;
-    object-position: 50% 51%;
-    margin: 0 auto 1.5rem;
 }
 
 .hero h1 {
-    font-size: clamp(1.7rem, 4.5vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.2;
-    color: #fff;
-    margin-bottom: 0.75rem;
+    font-size: 36px;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .hero p {
-    max-width: 52ch;
-    margin: 0 auto;
-    color: var(--texto-suave);
-    font-size: 1.1rem;
+    font-size: 18px;
+    color: #a6a6a6;
 }
 
-/* Traço verde afinando nas pontas, como o da logo */
-.hero::after {
-    content: "";
-    display: block;
-    width: min(560px, 80%);
-    height: 2px;
-    margin: 2.5rem auto 0;
-    background: linear-gradient(90deg, transparent, var(--verde) 20%, var(--verde) 80%, transparent);
-}
-
-/* Seções*/
+/* seções (sobre e calculadora) */
 .container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 2.5rem 1.25rem;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
 }
 
 .container h2 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.75rem;
+    font-size: 26px;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .container h3 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--verde);
-    margin: 1.75rem 0 0.75rem;
-}
-
-.container p {
-    max-width: 65ch;
+    font-size: 18px;
+    color: #80ff1a;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .container strong {
-    color: #fff;
+    color: white;
 }
 
+/* lista das marcas */
 .marcas-list {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 10px;
 }
 
 .marcas-list li {
-    padding: 0.35rem 1.1rem;
-    border: 1px solid var(--verde-suave);
-    border-radius: 999px;
-    color: #fff;
-    font-weight: 500;
+    padding: 5px 15px;
+    border: 1px solid #80ff1a;
+    border-radius: 20px;
+    color: white;
 }
 
-/* Calculadora: o único bloco com moldura verde */
-.container:nth-of-type(2) {
-    max-width: 700px;
-    margin: 1rem auto;
-    padding: 2rem 1.5rem;
-    background: var(--superficie);
-    border: 1px solid var(--verde-suave);
-    border-radius: 14px;
+/* calculadora (classe nova que coloquei no html) */
+.calculadora {
+    background-color: #0d0d0d;
+    border: 1px solid #80ff1a;
+    border-radius: 10px;
 }
 
-/*Formulário */
+/* campos de escolher marca, modelo e defeito */
 .combo {
     position: relative;
-    margin-bottom: 0.9rem;
+    margin-bottom: 15px;
 }
 
 .combo input {
-    display: block;
     width: 100%;
-    padding: 0.8rem 2.6rem 0.8rem 1rem;
-    font: inherit;
-    color: #fff;
-    background-color: var(--preto);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%2380ff1a' stroke-width='2'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    border: 1px solid var(--linha);
-    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    border: 1px solid #262626;
+    border-radius: 6px;
     cursor: pointer;
 }
 
-.combo input::placeholder {
-    color: var(--texto-suave);
-}
-
-.combo input:hover:not(:disabled) {
-    border-color: var(--verde-suave);
+.combo input:hover {
+    border-color: #80ff1a;
 }
 
 .combo input:disabled {
-    opacity: 0.45;
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
-.combo input:focus-visible,
-button:focus-visible {
-    outline: 2px solid var(--verde);
-    outline-offset: 2px;
-}
-
+/* lista de opções que abre embaixo do campo */
 .combo ul {
     position: absolute;
-    z-index: 10;
     left: 0;
     right: 0;
-    top: calc(100% + 4px);
+    top: 100%;
+    z-index: 10;
     list-style: none;
-    max-height: 260px;
+    max-height: 250px;
     overflow-y: auto;
-    background: var(--superficie);
-    border: 1px solid var(--verde-suave);
-    border-radius: 8px;
+    background-color: #0d0d0d;
+    border: 1px solid #80ff1a;
+    border-radius: 6px;
 }
 
 .combo ul[hidden] {
@@ -176,168 +129,128 @@ button:focus-visible {
 }
 
 .combo li {
-    padding: 0.65rem 1rem;
+    padding: 10px;
     cursor: pointer;
+}
+
+.combo li:hover {
+    background-color: #80ff1a;
+    color: black;
+}
+
+/* classes que o javascript adiciona nas opções */
+.combo li.ativo {
+    background-color: #80ff1a;
+    color: black;
 }
 
 .combo li.selecionada {
-    color: var(--verde);
-    font-weight: 600;
+    color: #80ff1a;
+    font-weight: bold;
 }
 
-.combo li:hover,
-.combo li.ativo {
-    background: var(--verde);
-    color: var(--preto);
-}
-
-.combo li.vazio,
-.combo li.vazio:hover {
-    background: none;
-    color: var(--texto-suave);
-    font-weight: 400;
+.combo li.vazio {
+    color: #a6a6a6;
     cursor: default;
 }
 
+.combo li.vazio:hover {
+    background-color: transparent;
+    color: #a6a6a6;
+}
+
+/* botões */
 button {
-    font: inherit;
-    font-weight: 600;
-    color: var(--preto);
-    background: var(--verde);
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: #80ff1a;
     border: none;
-    border-radius: 8px;
-    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    padding: 12px 25px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
 }
 
 button:hover {
-    background: #9bff4d;
-}
-
-button:active {
-    transform: translateY(1px);
+    background-color: #9bff4d;
 }
 
 #btnCalcular {
     width: 100%;
-    margin-top: 0.4rem;
 }
 
-/*Resultado */
-#resultado:not(:empty) {
-    margin-top: 1.25rem;
-    padding: 1rem 1.25rem;
-    background: var(--preto);
-    border-left: 3px solid var(--verde);
-    border-radius: 0 8px 8px 0;
+/* resultado do cálculo */
+#resultado {
+    margin-top: 20px;
 }
 
-#resultado strong:last-of-type {
-    color: var(--verde);
-    font-size: 1.4rem;
+#resultado strong {
+    color: #80ff1a;
 }
 
 #resultado small {
-    color: var(--texto-suave);
+    color: #a6a6a6;
 }
 
-/*Rodapé*/
+/* rodapé */
 footer {
     text-align: center;
-    padding: 3rem 1.25rem 3.5rem;
-    margin-top: 2rem;
-}
-
-footer::before {
-    content: "";
-    display: block;
-    width: min(560px, 80%);
-    height: 2px;
-    margin: 0 auto 2.5rem;
-    background: linear-gradient(90deg, transparent, var(--verde) 20%, var(--verde) 80%, transparent);
+    padding: 40px 20px;
+    border-top: 2px solid #80ff1a;
 }
 
 footer h2 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.5rem;
+    font-size: 26px;
+    color: white;
+    margin-bottom: 10px;
 }
 
 footer p {
-    color: var(--texto-suave);
-    margin-bottom: 1.5rem;
+    color: #a6a6a6;
+    margin-bottom: 20px;
 }
 
 #btnWhatsapp {
-    border-radius: 999px;
-    padding: 1rem 2.2rem;
-    font-size: 1.05rem;
+    border-radius: 25px;
+    padding: 14px 30px;
 }
 
-/* Instagram: botão secundário (contorno verde) ao lado do WhatsApp */
+/* caixa que o javascript cria pra deixar whatsapp e instagram juntos */
 .footer-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 10px;
 }
 
 .btn-instagram {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: calc(1rem - 1px) calc(2.2rem - 1px);
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--verde);
+    display: inline-block;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #80ff1a;
     text-decoration: none;
-    background: transparent;
-    border: 1px solid var(--verde-suave);
-    border-radius: 999px;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    border: 1px solid #80ff1a;
+    border-radius: 25px;
 }
 
 .btn-instagram:hover {
-    background: var(--verde);
-    border-color: var(--verde);
-    color: var(--preto);
+    background-color: #80ff1a;
+    color: black;
 }
 
-.btn-instagram:focus-visible {
-    outline: 2px solid var(--verde);
-    outline-offset: 2px;
-}
-
-/*Celular*/
+/* celular */
 @media (max-width: 520px) {
-    .hero {
-        padding-top: 2rem;
-    }
-
-    .container:nth-of-type(2) {
-        margin: 1rem 0.75rem;
-        padding: 1.5rem 1.1rem;
-    }
-
-    #btnWhatsapp {
-        width: 100%;
+    .hero h1 {
+        font-size: 26px;
     }
 
     .footer-links {
         flex-direction: column;
     }
 
+    #btnWhatsapp,
     .btn-instagram {
         width: 100%;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    button,
-    .btn-instagram {
-        transition: none;
     }
 }
