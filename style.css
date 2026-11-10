@@ -76,8 +76,8 @@ body {
     color: white;
 }
 
-/* calculadora (classe nova que coloquei no html) */
-.calculadora {
+/* calculadora: pega a seção que vem logo depois de outra .container (a 2ª seção do site) */
+.container + .container {
     background-color: #0d0d0d;
     border: 1px solid #80ff1a;
     border-radius: 10px;
